@@ -1,20 +1,85 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Camera.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=2]
+[ext_resource path="res://Assets/rigzsoft/Smoke/Fog-Group2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/rigzsoft/Flames/flame1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/rigzsoft/Smoke/Fog1.png" type="Texture" id=5]
+[ext_resource path="res://Assets/rigzsoft/Smoke/CloudPart.png" type="Texture" id=6]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.316832, 1 )
+colors = PoolColorArray( 0.82959, 0.813387, 0.813387, 1, 0.810059, 0.208843, 0.208843, 1, 0.794434, 0.778523, 0.14275, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+gravity = Vector3( 0, -98, 0 )
+angular_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 1.0
+angular_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 1.0
+color = Color( 0.521569, 0.509804, 0.509804, 1 )
+
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0.039604, 0.0693069, 0.19802, 0.415842, 0.613861, 0.643564, 1 )
+colors = PoolColorArray( 0.914063, 0.856934, 0.856934, 1, 0.0831683, 0.0831683, 0.0831683, 1, 0.875, 0.789551, 0.789551, 1, 0.545448, 0.545448, 0.545448, 1, 0.825289, 0.825289, 0.825289, 1, 0.856647, 0.856647, 0.856647, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 6 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Particles1" type="Particles2D" parent="."]
-position = Vector2( 128, 256 )
+[node name="fire" type="Particles2D" parent="."]
+position = Vector2( 190.844, 454.262 )
+scale = Vector2( 0.5, 0.5 )
+amount = 4
+lifetime = 4.0
+speed_scale = 2.0
+process_material = SubResource( 3 )
+texture = ExtResource( 4 )
 
-[node name="Particles2" type="Particles2D" parent="."]
-position = Vector2( 512, 256 )
+[node name="cloud" type="Particles2D" parent="."]
+position = Vector2( 835.207, 247.625 )
+scale = Vector2( 0.329543, 0.350748 )
+amount = 3
+lifetime = 3.0
+speed_scale = 2.0
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
 
-[node name="Particles3" type="Particles2D" parent="."]
-position = Vector2( 896, 256 )
+[node name="fog" type="Sprite" parent="."]
+position = Vector2( 499.874, 226.562 )
+scale = Vector2( 0.439391, 0.467664 )
+texture = ExtResource( 5 )
+
+[node name="Particles2" type="Particles2D" parent="fog"]
+show_behind_parent = true
+lifetime = 3.0
+process_material = SubResource( 7 )
+texture = ExtResource( 3 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 512, 304 )
+current = true
 script = ExtResource( 1 )
