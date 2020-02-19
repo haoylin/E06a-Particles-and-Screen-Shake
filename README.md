@@ -2,7 +2,7 @@
 
 As with other exercises, Fork and Clone this repository.
 
-This exercise is an opportunity to experiment with the Particles2D node in Godot and to give you a script with which you can implement screen shake.
+This is a animation that you can press WSD key to trigger screen shake.
 
 This project contains three Particle2D nodes. Use them to implement any three of the following effects:  fire, smoke, rain, explosion, plasma, floating feathers, lightning, electric shocks, muzzle flash, fireball, snowflakes, fog, clouds, magic spell
 
